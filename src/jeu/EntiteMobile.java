@@ -2,7 +2,7 @@ package jeu;
 
 import processing.core.PVector;
 
-public abstract class ElementMobile extends Element{
+public abstract class EntiteMobile extends Entite{
 	/**
 	 * Vitesse, en pixels/s, de l'élément
 	 */
@@ -16,10 +16,10 @@ public abstract class ElementMobile extends Element{
 	/**
 	 * Derniere collision
 	 */
-	protected Element lastCollision;
+	protected Entite lastCollision;
 	
 	
-	public ElementMobile(float x, float y) {
+	public EntiteMobile(float x, float y) {
 		super(x, y);
 		vitesse = new PVector(0, 0);
 		
@@ -52,7 +52,7 @@ public abstract class ElementMobile extends Element{
 		pos.add(deplacement);
 		
 
-		Element e = jeu.checkCollision(this);
+		Entite e = jeu.checkCollision(this);
 		if (e != null)
 		{
 			faireCollision(e, jeu);
@@ -129,7 +129,7 @@ public abstract class ElementMobile extends Element{
 	}
 	
 	@Override
-	protected void faireCollision(Element collider, DonneesJeu jeu)
+	protected void faireCollision(Entite collider, DonneesJeu jeu)
 	{
 	}
 	

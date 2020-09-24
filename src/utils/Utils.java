@@ -3,6 +3,7 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import processing.core.PApplet;
@@ -12,9 +13,16 @@ public class Utils {
 	//Methode statiques (le random et le color de PApplet n'est pas statiques et c'est chiant)
 	// Supprime la dependance a PApplet
 	
+	private static Random generator = new Random(System.currentTimeMillis());
+	
+	public static void setRandomGenerator(Random generator)
+	{
+		Utils.generator = generator;
+	}
+	
 	public static double random(double a, double b)
 	{
-		return Math.random() * (b - a) + a;
+		return generator.nextDouble() * (b - a) + a;
 	}
 	
 	public static float random(float a, float b)

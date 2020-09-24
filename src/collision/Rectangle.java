@@ -14,6 +14,11 @@ public class Rectangle extends Forme {
 		this.w = w;
 		this.h= h;
 	}
+	
+	// Pas de suivi de pos !
+	public Rectangle(float x, float y, float w, float h) {
+		this(new PVector(x, y), w, h);
+	}
 
 	@Override
 	boolean collision(Rectangle r) {
@@ -78,6 +83,26 @@ public class Rectangle extends Forme {
 	@Override
 	public Forme getTranslation(PVector dir) {
 		return new Rectangle(PVector.add(dir, pos), w, h);
+	}
+	
+	public float getW()
+	{
+		return w;
+	}
+	
+	public float getH() 
+	{
+		return h;
+	}
+	
+	public float getX()
+	{
+		return pos.x;
+	}
+	
+	public float getY()
+	{
+		return pos.y;
 	}
 	
 	

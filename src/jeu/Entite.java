@@ -9,7 +9,7 @@ import processing.core.PVector;
  * @author adrien
  *
  */
-public abstract class Element{
+public abstract class Entite{
 	/**
 	 * Vrai si l'élément est détruit
 	 */
@@ -23,7 +23,7 @@ public abstract class Element{
 	 */
 	protected Forme forme;
 	
-	public Element(float x, float y)
+	public Entite(float x, float y)
 	{
 		pos = new PVector(x, y);
 		detruit = false;
@@ -49,7 +49,7 @@ public abstract class Element{
 	 * @param e Element avec lequel détecter la collision
 	 * @return vrai s'il y a collision
 	 */
-	public boolean collision(Element e) {
+	public boolean collision(Entite e) {
 		return e.getForme() != null && !e.estDetruit() && collision(e.getForme());
 	}
 	/**
@@ -72,7 +72,7 @@ public abstract class Element{
 	 * @param collider element avec lequel on est en collision
 	 * @param p 
 	 */
-	protected abstract void faireCollision(Element collider, DonneesJeu d);
+	protected abstract void faireCollision(Entite collider, DonneesJeu d);
 
 
 	//Un element n'evolue pas par defaut

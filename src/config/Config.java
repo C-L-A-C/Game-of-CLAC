@@ -182,7 +182,7 @@ public class Config{
 				return false;
 			}
 		};
-		Predicate<String> checkBool = str -> str.toLowerCase().equals("true") || str.toLowerCase().equals("false");
+		//Predicate<String> checkBool = str -> str.toLowerCase().equals("true") || str.toLowerCase().equals("false");
 		Predicate<String> checkKey = str -> stringToKey(str) != -1;
 		
 		//Default configuration and type checks

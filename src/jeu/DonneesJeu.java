@@ -6,14 +6,17 @@ public class DonneesJeu {
 	
 	private Carte carte;
 	private Joueur joueur;
+	private Scroll scroll;
 	
 	public DonneesJeu()
 	{
+		int viewW = 640, viewH = 480;
 		carte = new Carte(100, 100);
 		joueur = new Joueur(0, 0);
+		scroll = new Scroll(carte.getPixelWidth(), carte.getPixelHeight(), viewW, viewH);
 	}
 	
-	public Element checkCollision(Element e)
+	public Entite checkCollision(Entite e)
 	{
 		if (e != joueur && e.collision(joueur))
 			return joueur;
@@ -29,8 +32,15 @@ public class DonneesJeu {
 	
 	public void afficher(PApplet p)
 	{
-		carte.afficher(p);
+		scroll.update(joueur);
+		
+		p.pushMatrix();
+		p.translate(-scroll.getX(), -scroll.getY());
+		
+		carte.afficher(p, scroll.getBB());
 		joueur.afficher(p);
+		
+		p.popMatrix();
 	}
 	
 	public Joueur getJoueur()

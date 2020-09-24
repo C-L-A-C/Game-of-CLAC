@@ -6,9 +6,9 @@ import controles.Controle;
 import processing.core.*;
 
 
-public class Joueur extends ElementMobile implements Controlable {
+public class Joueur extends EntiteMobile implements Controlable {
 	
-	public final static int W = 32, H = 32;
+	public final static int W = Carte.GRID_W, H = Carte.GRID_H;
 	
 
 	public Joueur(float x, float y) {

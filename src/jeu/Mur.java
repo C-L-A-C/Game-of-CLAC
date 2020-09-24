@@ -3,7 +3,7 @@ package jeu;
 import collision.Rectangle;
 import processing.core.PApplet;
 
-public class Mur extends Element{
+public class Mur extends Entite{
 		
 	protected float w, h;
 	
@@ -23,6 +23,6 @@ public class Mur extends Element{
 	}
 
 	@Override
-	protected void faireCollision(Element collider, DonneesJeu d) {
+	protected void faireCollision(Entite collider, DonneesJeu d) {
 	}
 }

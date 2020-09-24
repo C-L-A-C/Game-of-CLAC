@@ -1,16 +1,17 @@
 package main;
 
-import java.io.IOException;
+import java.util.Random;
 
 import gui.Jeu;
-import gui.Scene;
 import gui.SceneHandler;
-import processing.core.PApplet;
-import processing.core.PFont;
+import utils.Utils;
 
 public class Main {
 
 	public static void main(String[] args) {
+		
+		Utils.setRandomGenerator(new Random(42));
+		
 		SceneHandler.launch(new Jeu());
 		/*SceneHandler.launch(new Scene() {
 			private PApplet p;
