@@ -4,7 +4,6 @@ import collision.Rectangle;
 import element.Element;
 import element.TypeElement;
 import processing.core.PApplet;
-import utils.Noise;
 
 public class Carte {
 	
