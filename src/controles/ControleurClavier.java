@@ -67,8 +67,9 @@ public class ControleurClavier extends Controleur{
 	{		
 		for (int i = 0; i < config.length; i++)
 		{
-			if (config[i] == keycode)
+			if (config[i] == keycode) {
 				setTouche(i, val);
+			}
 		}
 	}
 	

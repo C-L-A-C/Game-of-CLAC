@@ -2,6 +2,7 @@ package main;
 
 import java.io.IOException;
 
+import gui.Jeu;
 import gui.Scene;
 import gui.SceneHandler;
 import processing.core.PApplet;
@@ -10,7 +11,8 @@ import processing.core.PFont;
 public class Main {
 
 	public static void main(String[] args) {
-		SceneHandler.launch(new Scene() {
+		SceneHandler.launch(new Jeu());
+		/*SceneHandler.launch(new Scene() {
 			private PApplet p;
 			
 			public void setup(PApplet p) {
@@ -34,7 +36,7 @@ public class Main {
 				p.text("CLAC", p.mouseX, p.mouseY);
 			}
 			
-		});
+		});*/
 	}
 
 }

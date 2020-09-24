@@ -7,20 +7,25 @@ import processing.core.PApplet;
  * @author adrien
  *
  */
-public interface Scene {
+public abstract class Scene {
 	
-	public void setup(PApplet p);
+	protected PApplet p;
 	
-	public default void fermer() {};
+	public void setup(PApplet p)
+	{
+		this.p = p;
+	}
+	
+	public void fermer() {};
 
-	public void draw();
+	public abstract void draw();
 
-	public default void keyPressed() {};
+	public void keyPressed() {};
 
-	public default void keyReleased() {};
+	public void keyReleased() {};
 
-	public default void mouseReleased() {};
+	public void mouseReleased() {};
 
-	public default void mousePressed() {};
+	public void mousePressed() {};
 
 }

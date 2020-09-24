@@ -188,8 +188,16 @@ public class Config{
 		//Default configuration and type checks
 		config.put(ConfigKey.OPTION_1, "Valeur par défaut de l'option 1");
 		checks.put(ConfigKey.OPTION_1, checkString);
-		config.put(ConfigKey.OPTION_1, "Valeur par défaut de l'option 1");
-		checks.put(ConfigKey.OPTION_1, checkString);			
+		config.put(ConfigKey.LOG_LEVEL, "2");
+		checks.put(ConfigKey.LOG_LEVEL, checkInt);	
+		config.put(ConfigKey.HAUT, "UP");
+		checks.put(ConfigKey.HAUT, checkKey);	
+		config.put(ConfigKey.BAS, "DOWN");
+		checks.put(ConfigKey.BAS, checkKey);	
+		config.put(ConfigKey.DROITE, "RIGHT");
+		checks.put(ConfigKey.DROITE, checkKey);	
+		config.put(ConfigKey.GAUCHE, "LEFT");
+		checks.put(ConfigKey.GAUCHE, checkKey);			
 		
 	}
 

@@ -12,7 +12,11 @@ public enum ConfigKey {
 	
 	//Clef de configuration et leur nom pour le fichier de config
 	OPTION_1("Option1"),
-	LOG_LEVEL("LogLevel");
+	LOG_LEVEL("LogLevel"),
+	HAUT("HAUT"),
+	BAS("BAS"),
+	DROITE("DROITE"),
+	GAUCHE("GAUCHE");
 	
 	
 	private final static Map<String, String> noms = new HashMap<>();
