@@ -2,13 +2,14 @@ package jeu;
 
 import collision.Rectangle;
 import processing.core.PApplet;
+import ressources.AffichageRectangle;
 
 public class Mur extends Entite{
 		
 	protected float w, h;
 	
 	public Mur(float x, float y, float w, float h) {
-		super(x, y);
+		super(x, y, new AffichageRectangle(0));
 		forme = new Rectangle(pos, w, h);
 		this.w = w;
 		this.h = h;
