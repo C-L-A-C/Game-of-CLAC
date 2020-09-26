@@ -147,4 +147,15 @@ public class Utils {
 	public static int signe(float data) {
 		return data > 0 ? 1 : (data < 0 ? -1 : 0);
 	}
+
+	public static String PascalCase(String key) {
+		String natural = key.replace('-', ' ').replace('_', ' ').toLowerCase();
+		StringBuilder result = new StringBuilder();
+		for (String word : natural.split(" "))
+		{
+			if (word.length() != 0)
+				result.append(Character.toUpperCase(word.charAt(0)) + word.substring(1));
+		}
+		return result.toString();
+	}
 }

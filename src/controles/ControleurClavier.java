@@ -3,6 +3,7 @@ package controles;
 import config.Config;
 import config.ConfigKey;
 import jeu.DonneesJeu;
+import utils.Utils;
 
 public class ControleurClavier extends Controleur{
 	
@@ -41,7 +42,7 @@ public class ControleurClavier extends Controleur{
 		for (int i = 0; i < config.length; i++)
 		{
 			String key = controles[i].toString();
-			config[i] = Config.readKey(ConfigKey.fromString(key));
+			config[i] = Config.readKey(ConfigKey.fromString("Touche" + Utils.PascalCase(key)));
 		}
 	}
 

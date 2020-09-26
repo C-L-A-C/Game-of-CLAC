@@ -13,10 +13,11 @@ public enum ConfigKey {
 	//Clef de configuration et leur nom pour le fichier de config
 	OPTION_1("Option1"),
 	LOG_LEVEL("LogLevel"),
-	HAUT("HAUT"),
-	BAS("BAS"),
-	DROITE("DROITE"),
-	GAUCHE("GAUCHE");
+	// Le format de nom des touches est : ToucheNomTouche (Touche + NomTouche en PascalCase)
+	TOUCHE_HAUT("ToucheHaut"),
+	TOUCHE_BAS("ToucheBas"),
+	TOUCHE_DROITE("ToucheDroite"),
+	TOUCHE_GAUCHE("ToucheGauche");
 	
 	
 	private final static Map<String, String> noms = new HashMap<>();
