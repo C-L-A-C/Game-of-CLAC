@@ -19,6 +19,8 @@ public class Carte {
 	public void afficher(PApplet p, Rectangle zone)
 	{
 		Element[][] elements = getZoneCarte(zone, p);
+		int debutGrilleX = ((int) zone.getX() / GRID_W) * GRID_W;
+		int debutGrilleY = ((int) zone.getY() / GRID_W) * GRID_W;
 		for (int x = 0; x < elements.length; x++)
 		{
 			for (int y = 0; y < elements[x].length; y++)
@@ -38,15 +40,14 @@ public class Carte {
 					p.fill(10, 10, 10);
 					break;
 				}
-				p.rect(zone.getX() + x * GRID_W, zone.getY() + y * GRID_H, GRID_W, GRID_H);
+				p.rect(debutGrilleX + x * GRID_W, debutGrilleY + y * GRID_H, GRID_W, GRID_H);
 			}
 		}
 	}
 	
 	private Element[][] getZoneCarte(Rectangle zone, PApplet p) {
 		Rectangle gridZone = new Rectangle(zone.getX() / GRID_W, zone.getY() / GRID_H, zone.getW() / GRID_W, zone.getH() / GRID_H);
-		
-		Element[][] elements = new Element[(int) gridZone.getW()][ (int) gridZone.getH()];
+		Element[][] elements = new Element[(int) gridZone.getW() + 2][ (int) gridZone.getH() + 2];
 		for (int x = 0; x < elements.length; x++)
 		{
 			for (int y = 0; y < elements[x].length; y++)
