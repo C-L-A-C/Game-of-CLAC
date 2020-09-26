@@ -5,6 +5,11 @@ import java.io.PrintStream;
 import config.Config;
 import config.ConfigKey;
 
+/**
+ * Logger thread safe
+ * @author adrien
+ *
+ */
 public class Logger {
 	
 	private static Object lockErr = new Object(), lockOut = new Object();
