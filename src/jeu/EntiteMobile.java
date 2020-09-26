@@ -1,7 +1,7 @@
 package jeu;
 
+import graphiques.Apparence;
 import processing.core.PVector;
-import ressources.Apparence;
 
 public abstract class EntiteMobile extends Entite{
 	/**

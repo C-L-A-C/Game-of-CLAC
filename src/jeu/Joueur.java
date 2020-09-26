@@ -3,7 +3,7 @@ package jeu;
 import collision.Rectangle;
 import controles.Controlable;
 import controles.Controle;
-import ressources.AffichageRectangle;
+import graphiques.AffichageRectangle;
 import utils.Utils;
 
 

@@ -1,4 +1,4 @@
-package ressources;
+package graphiques;
 
 import java.io.IOException;
 import java.io.OutputStream;

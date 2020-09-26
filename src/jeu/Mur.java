@@ -1,8 +1,8 @@
 package jeu;
 
 import collision.Rectangle;
+import graphiques.AffichageRectangle;
 import processing.core.PApplet;
-import ressources.AffichageRectangle;
 
 public class Mur extends Entite{
 		

@@ -1,9 +1,9 @@
 package jeu;
 
 import collision.Forme;
+import graphiques.Apparence;
 import processing.core.PApplet;
 import processing.core.PVector;
-import ressources.Apparence;
 
 /**
  * Tout élément affichable, qui a des collisions

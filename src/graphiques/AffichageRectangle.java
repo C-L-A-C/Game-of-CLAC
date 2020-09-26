@@ -1,4 +1,4 @@
-package ressources;
+package graphiques;
 
 import processing.core.PApplet;
 

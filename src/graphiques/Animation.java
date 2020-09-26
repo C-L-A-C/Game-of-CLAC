@@ -1,4 +1,4 @@
-package ressources;
+package graphiques;
 import java.util.ArrayList;
 import java.util.List;
 
