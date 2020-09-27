@@ -1,8 +1,8 @@
 package controles;
 
 public enum Controle {
-	HAUT, BAS, DROITE, GAUCHE,
-	HAUT_RELACHE(false), BAS_RELACHE(true), DROITE_RELACHE(false), GAUCHE_RELACHE(false);
+	HAUT, BAS, DROITE, GAUCHE, POSER_MUR,
+	HAUT_RELACHE(false), BAS_RELACHE(true), DROITE_RELACHE(false), GAUCHE_RELACHE(false), POSER_MUR_RELACHE;
 	
 	private boolean enfonce;
 

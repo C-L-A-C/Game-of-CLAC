@@ -197,8 +197,9 @@ public class Config{
 		config.put(ConfigKey.DROITE, "RIGHT");
 		checks.put(ConfigKey.DROITE, checkKey);	
 		config.put(ConfigKey.GAUCHE, "LEFT");
-		checks.put(ConfigKey.GAUCHE, checkKey);			
-		
+		checks.put(ConfigKey.GAUCHE, checkKey);	
+		config.put(ConfigKey.POSER_MUR, "A");
+		checks.put(ConfigKey.POSER_MUR, checkKey);
 	}
 
 }
