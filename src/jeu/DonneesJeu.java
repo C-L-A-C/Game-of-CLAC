@@ -3,9 +3,12 @@ package jeu;
 import processing.core.PApplet;
 import java.util.HashMap;
 
+import collision.Rectangle;
+
 
 public class DonneesJeu {
 	
+	private Rectangle rectMonde;
 	private Carte carte;
 	private Joueur joueur;
 	private Scroll scroll;
@@ -18,6 +21,7 @@ public class DonneesJeu {
 		joueur = new Joueur(0, 0);
 		scroll = new Scroll(carte.getPixelWidth(), carte.getPixelHeight(), viewW, viewH);
 		builds = new HashMap <float[], Entite>();
+		rectMonde = new Rectangle(0, 0, carte.getPixelWidth(), carte.getPixelHeight());
 	}
 	
 	public void saveBuild(Entite newBuild) {
@@ -27,8 +31,18 @@ public class DonneesJeu {
 	
 	public Entite checkCollision(Entite e)
 	{
+		//TODO: faire un vrai truc ici parceque la c'est bullshit
+		if (! e.collision(rectMonde))
+			return joueur;
+		
 		if (e != joueur && e.collision(joueur))
 			return joueur;
+		
+		for (Entite b : builds.values())
+		{
+			if (e != b && e.collision(b))
+				return b;
+		}
 		return null;
 	}
 	

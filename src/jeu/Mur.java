@@ -10,9 +10,9 @@ public class Mur extends Entite{
 	
 	public Mur(float x, float y, float w, float h) {
 		super(x, y, new AffichageRectangle(0));
-		forme = new Rectangle(pos, w, h);
 		this.w = w;
 		this.h = h;
+		forme = new Rectangle(pos, this.w, this.h);
 	}
 
 	@Override

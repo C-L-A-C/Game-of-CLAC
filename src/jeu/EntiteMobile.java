@@ -55,12 +55,13 @@ public abstract class EntiteMobile extends Entite{
 		
 
 		Entite e = jeu.checkCollision(this);
+
 		if (e != null)
 		{
 			faireCollision(e, jeu);
 			e.faireCollision(this, jeu);
 			lastCollision = e;
-			pos = anciennePos;
+			pos.set(anciennePos);
 		}
 				
 		/*float mag = vitesse.mag();

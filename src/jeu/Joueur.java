@@ -45,8 +45,10 @@ public class Joueur extends EntiteMobile implements Controlable {
 			vitesse.y = vitesseMax;
 			break;
 		case POSER_MUR:
-			Mur newMur = new Mur(jeu.getJoueur().getX() + 1, jeu.getJoueur().getY(), 1, 1);
-			float key [] = {newMur.getX(), newMur.getY()};
+			int xMur = ((int) jeu.getJoueur().getX() / Carte.GRID_W - 1) * Carte.GRID_W;
+			int yMur = ((int) jeu.getJoueur().getY() / Carte.GRID_H - 1) * Carte.GRID_H;
+			Mur newMur = new Mur(xMur, yMur, Carte.GRID_W, Carte.GRID_H);
+			float key [] = {xMur, yMur};
 			jeu.getBuilds().put(key , newMur);
 		default:
 			break;
