@@ -1,12 +1,15 @@
 package jeu;
 
 import processing.core.PApplet;
+import java.util.HashMap;
+
 
 public class DonneesJeu {
 	
 	private Carte carte;
 	private Joueur joueur;
 	private Scroll scroll;
+	private HashMap <float[], Entite> builds;
 	
 	public DonneesJeu()
 	{
@@ -14,6 +17,12 @@ public class DonneesJeu {
 		carte = new Carte(100, 100);
 		joueur = new Joueur(0, 0);
 		scroll = new Scroll(carte.getPixelWidth(), carte.getPixelHeight(), viewW, viewH);
+		builds = new HashMap <float[], Entite>();
+	}
+	
+	public void saveBuild(Entite newBuild) {
+		float key [] = {newBuild.getX(), newBuild.getY()};
+		this.builds.put(key, newBuild);
 	}
 	
 	public Entite checkCollision(Entite e)
@@ -40,12 +49,20 @@ public class DonneesJeu {
 		carte.afficher(p, scroll.getBB());
 		joueur.afficher(p);
 		
+
+		for (Entite value : this.builds.values()) {
+			value.afficher(p);
+		}
+		
 		p.popMatrix();
 	}
 	
 	public Joueur getJoueur()
 	{
 		return joueur;
+	}
+	public HashMap <float[], Entite> getBuilds(){
+		return this.builds;
 	}
 
 }

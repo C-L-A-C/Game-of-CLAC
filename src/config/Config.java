@@ -199,7 +199,9 @@ public class Config{
 		config.put(ConfigKey.TOUCHE_DROITE, "RIGHT");
 		checks.put(ConfigKey.TOUCHE_DROITE, checkKey);	
 		config.put(ConfigKey.TOUCHE_GAUCHE, "LEFT");
-		checks.put(ConfigKey.TOUCHE_GAUCHE, checkKey);			
+		checks.put(ConfigKey.TOUCHE_GAUCHE, checkKey);
+		config.put(ConfigKey.TOUCHE_POSER_MUR, "A");
+		checks.put(ConfigKey.TOUCHE_POSER_MUR, checkKey);
 		
 	}
 
