@@ -2,6 +2,7 @@ package main;
 
 import java.util.Random;
 
+import config.Config;
 import gui.Jeu;
 import gui.SceneHandler;
 import utils.Utils;
@@ -9,8 +10,6 @@ import utils.Utils;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Utils.setRandomGenerator(new Random(42));
 		
 		SceneHandler.launch(new Jeu());
 		/*SceneHandler.launch(new Scene() {

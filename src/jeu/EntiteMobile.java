@@ -1,5 +1,6 @@
 package jeu;
 
+import graphiques.Apparence;
 import processing.core.PVector;
 
 public abstract class EntiteMobile extends Entite{
@@ -19,8 +20,9 @@ public abstract class EntiteMobile extends Entite{
 	protected Entite lastCollision;
 	
 	
-	public EntiteMobile(float x, float y) {
-		super(x, y);
+	protected EntiteMobile(float x, float y, Apparence a)
+	{
+		super(x, y, a);
 		vitesse = new PVector(0, 0);
 		
 		tps = -1;

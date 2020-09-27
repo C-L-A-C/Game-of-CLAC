@@ -35,7 +35,7 @@ public class DonneesJeu {
 		scroll.update(joueur);
 		
 		p.pushMatrix();
-		p.translate(-scroll.getX(), -scroll.getY());
+		p.translate(-(int) scroll.getX(), - (int) scroll.getY());
 		
 		carte.afficher(p, scroll.getBB());
 		joueur.afficher(p);

@@ -1,4 +1,4 @@
-package utils;
+package graphiques;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -9,17 +9,19 @@ import java.util.Map;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import utils.Logger;
 
 public class Ressources {
 
-	private static Map<String, PImage> ressources = new HashMap<String, PImage>();
+	private static Map<String, Object> ressources;
 	private static PApplet p;
 	private static boolean enabled;
 	
-	public static void init(PApplet p)
+	public static void init(PApplet _p)
 	{
-		Ressources.enabled = p != null;
-		Ressources.p = p;
+		enabled = _p != null;
+		p = _p;
+		ressources = new HashMap<>();
 	}
 	
 	public static PImage getImage(String nom)

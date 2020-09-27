@@ -1,6 +1,7 @@
 package jeu;
 
 import collision.Forme;
+import graphiques.Apparence;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -22,11 +23,16 @@ public abstract class Entite{
 	 * Forme de l'element, pour la collision (doit etre intialise par les sous-classes)
 	 */
 	protected Forme forme;
+	/**
+	 * Apparence graphique de l'élement
+	 */
+	protected Apparence apparence;
 	
-	public Entite(float x, float y)
+	protected Entite(float x, float y, Apparence a)
 	{
 		pos = new PVector(x, y);
 		detruit = false;
+		apparence = a;
 	}
 	
 	/**
@@ -65,7 +71,11 @@ public abstract class Entite{
 	 * Permet d'afficher l'élément
 	 * @param p Là où on va dessiner
 	 */
-	public abstract void afficher(PApplet p);
+	public void afficher(PApplet p)
+	{
+		//TODO: ça c'est en attente, en vrai faut voir ce qu'on fait ici, si on le laisse abstrait ou pas
+		apparence.afficher(p, (int) pos.x, (int) pos.y, Carte.GRID_W, Carte.GRID_H);
+	}
 	
 	/**
 	 * Que faire quand on est en collision avec un element ?

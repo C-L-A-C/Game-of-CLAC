@@ -83,6 +83,8 @@ public class Config{
 	// Retourne l'ensemble des clefs de configuration enregistrees
 	public static Set<ConfigKey> getCles()
 	{
+		if (config.isEmpty())
+			reloadConfig();
 		return new TreeSet<ConfigKey>(config.keySet());
 	}
 
@@ -108,7 +110,7 @@ public class Config{
 
 	private static String read(ConfigKey key)
 	{
-		if (!config.containsKey(key))
+		if (config.isEmpty())
 			reloadConfig();
 		
 		return config.get(key);
@@ -190,14 +192,14 @@ public class Config{
 		checks.put(ConfigKey.OPTION_1, checkString);
 		config.put(ConfigKey.LOG_LEVEL, "2");
 		checks.put(ConfigKey.LOG_LEVEL, checkInt);	
-		config.put(ConfigKey.HAUT, "UP");
-		checks.put(ConfigKey.HAUT, checkKey);	
-		config.put(ConfigKey.BAS, "DOWN");
-		checks.put(ConfigKey.BAS, checkKey);	
-		config.put(ConfigKey.DROITE, "RIGHT");
-		checks.put(ConfigKey.DROITE, checkKey);	
-		config.put(ConfigKey.GAUCHE, "LEFT");
-		checks.put(ConfigKey.GAUCHE, checkKey);			
+		config.put(ConfigKey.TOUCHE_HAUT, "UP");
+		checks.put(ConfigKey.TOUCHE_HAUT, checkKey);	
+		config.put(ConfigKey.TOUCHE_BAS, "DOWN");
+		checks.put(ConfigKey.TOUCHE_BAS, checkKey);	
+		config.put(ConfigKey.TOUCHE_DROITE, "RIGHT");
+		checks.put(ConfigKey.TOUCHE_DROITE, checkKey);	
+		config.put(ConfigKey.TOUCHE_GAUCHE, "LEFT");
+		checks.put(ConfigKey.TOUCHE_GAUCHE, checkKey);			
 		
 	}
 
