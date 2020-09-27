@@ -18,6 +18,8 @@ public abstract class Forme{
 	public abstract PVector getCenter();
 	public abstract PVector getNearest(float x, float y);
 	public abstract Forme getTranslation(PVector dir);
+	public abstract float getW();
+	public abstract float getH();
 
 	//Package private
 	abstract boolean collision(Rectangle r);

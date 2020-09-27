@@ -22,9 +22,9 @@ public class Jeu extends Scene {
 
 		controleur.doActions(jeu);
 		
-		jeu.evoluer();
-		
 		jeu.afficher(p);
+		
+		jeu.evoluer();
 	}
 	
 	@Override

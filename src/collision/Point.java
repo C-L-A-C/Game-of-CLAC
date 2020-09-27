@@ -47,4 +47,14 @@ public class Point extends Forme {
 		return new Point(getCenter());
 	}
 
+	@Override
+	public float getW() {
+		return 0;
+	}
+
+	@Override
+	public float getH() {
+		return 0;
+	}
+
 }

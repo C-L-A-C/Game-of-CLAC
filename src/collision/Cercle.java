@@ -73,5 +73,15 @@ public class Cercle extends Forme {
 		return new Cercle(PVector.add(pos, dir), r);
 	}
 
+	@Override
+	public float getW() {
+		return r * 2;
+	}
+
+	@Override
+	public float getH() {
+		return getW();
+	}
+
 
 }

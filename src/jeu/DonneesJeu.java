@@ -2,8 +2,10 @@ package jeu;
 
 import processing.core.PApplet;
 import java.util.HashMap;
+import java.util.Map;
 
 import collision.Rectangle;
+import gui.SceneHandler;
 
 
 public class DonneesJeu {
@@ -12,7 +14,7 @@ public class DonneesJeu {
 	private Carte carte;
 	private Joueur joueur;
 	private Scroll scroll;
-	private HashMap <float[], Entite> builds;
+	private Map <GridPosition, Entite> builds;
 	
 	public DonneesJeu()
 	{
@@ -20,13 +22,12 @@ public class DonneesJeu {
 		carte = new Carte(100, 100);
 		joueur = new Joueur(0, 0);
 		scroll = new Scroll(carte.getPixelWidth(), carte.getPixelHeight(), viewW, viewH);
-		builds = new HashMap <float[], Entite>();
+		builds = new HashMap <>();
 		rectMonde = new Rectangle(0, 0, carte.getPixelWidth(), carte.getPixelHeight());
 	}
 	
 	public void saveBuild(Entite newBuild) {
-		float key [] = {newBuild.getX(), newBuild.getY()};
-		this.builds.put(key, newBuild);
+		builds.put(newBuild.getPos(), newBuild);
 	}
 	
 	public Entite checkCollision(Entite e)
@@ -38,11 +39,22 @@ public class DonneesJeu {
 		if (e != joueur && e.collision(joueur))
 			return joueur;
 		
-		for (Entite b : builds.values())
+		int xStart = (int) e.getX() / Carte.GRID_W, yStart = (int) e.getY() / Carte.GRID_H;
+		
+		// Le nombre de blocs que prend l'entite en largeur + 1 s'il est pas centre sur la grille (et depasse sur le bloc suivant)
+		int nbBlocsX = (int) Math.ceil(e.getForme().getW() / Carte.GRID_W) + ((int) e.getX() % Carte.GRID_W == 0 ? 0 : 1);
+		int nbBlocsY = (int) Math.ceil(e.getForme().getH() / Carte.GRID_H) + ((int) e.getY() % Carte.GRID_H == 0 ? 0 : 1);
+		
+		for (int x = 0; x < nbBlocsX; x++)
 		{
-			if (e != b && e.collision(b))
-				return b;
+			for (int y = 0; y < nbBlocsY; y++)
+			{
+				Entite collider = builds.get(new GridPosition(x + xStart, y + yStart));
+				if (collider != null)
+					return collider;
+			}
 		}
+		
 		return null;
 	}
 	
@@ -56,6 +68,7 @@ public class DonneesJeu {
 	public void afficher(PApplet p)
 	{
 		scroll.update(joueur);
+		p.noStroke();
 		
 		p.pushMatrix();
 		p.translate(-(int) scroll.getX(), - (int) scroll.getY());
@@ -64,7 +77,7 @@ public class DonneesJeu {
 		joueur.afficher(p);
 		
 
-		for (Entite value : this.builds.values()) {
+		for (Entite value : builds.values()) {
 			value.afficher(p);
 		}
 		
@@ -74,9 +87,6 @@ public class DonneesJeu {
 	public Joueur getJoueur()
 	{
 		return joueur;
-	}
-	public HashMap <float[], Entite> getBuilds(){
-		return this.builds;
 	}
 
 }

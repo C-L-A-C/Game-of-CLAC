@@ -10,7 +10,7 @@ import processing.core.PApplet;
  */
 public class SceneHandler extends PApplet {
 
-	private static PApplet pAppletInstance;
+	public static PApplet pAppletInstance;
 	private static Scene runningScene;
 
 	public static void launch(Scene scene) {

@@ -48,8 +48,7 @@ public class Joueur extends EntiteMobile implements Controlable {
 			int xMur = ((int) jeu.getJoueur().getX() / Carte.GRID_W - 1) * Carte.GRID_W;
 			int yMur = ((int) jeu.getJoueur().getY() / Carte.GRID_H - 1) * Carte.GRID_H;
 			Mur newMur = new Mur(xMur, yMur, Carte.GRID_W, Carte.GRID_H);
-			float key [] = {xMur, yMur};
-			jeu.getBuilds().put(key , newMur);
+			jeu.saveBuild(newMur);
 		default:
 			break;
 		}

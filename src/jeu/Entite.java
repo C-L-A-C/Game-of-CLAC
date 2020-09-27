@@ -96,6 +96,10 @@ public abstract class Entite{
 	{
 		return forme;
 	}
+	public GridPosition getPos()
+	{
+		return new GridPosition(getX(), getY());
+	}
 	
 	public float getX()
 	{
