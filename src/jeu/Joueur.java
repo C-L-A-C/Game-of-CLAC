@@ -57,10 +57,6 @@ public class Joueur extends EntiteMobile implements Controlable {
 		case BAS:
 			vitesse.y = vitesseMax;
 			break;
-		case POSER_MUR:
-			Mur new_mur = new Mur(this.getX() + 1, this.getY(), 1, 1);
-			jeu.save_build(new_mur);
-			
 		default:
 			break;
 		}

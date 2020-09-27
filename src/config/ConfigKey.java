@@ -16,8 +16,7 @@ public enum ConfigKey {
 	HAUT("HAUT"),
 	BAS("BAS"),
 	DROITE("DROITE"),
-	GAUCHE("GAUCHE"),
-	POSER_MUR("POSER_MUR");
+	GAUCHE("GAUCHE");
 	
 	
 	private final static Map<String, String> noms = new HashMap<>();
