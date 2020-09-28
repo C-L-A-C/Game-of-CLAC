@@ -37,7 +37,7 @@ public class Scroll {
 	public void update(Entite followed) {
 		if (followed != null)
 		{
-			float eX = followed.getX() + wE / 2, eY = followed.getY() + hE / 2;
+			float eX = followed.getX(), eY = followed.getY();
 			setX(eX - w / 2);
 			setY(eY - h / 2);
 		}
