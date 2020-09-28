@@ -11,7 +11,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import utils.Logger;
 
-public class Ressources {
+public class Assets {
 
 	private static Map<String, Object> ressources;
 	private static PApplet p;

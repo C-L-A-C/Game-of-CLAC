@@ -22,7 +22,7 @@ class Tileset {
 	}
 	
 	public Tileset(String imageName, int nbX, int nbY) {
-		this(Ressources.getImage(imageName), nbX, nbY);
+		this(Assets.getImage(imageName), nbX, nbY);
 	}
 
 	public PImage get(int index) {		
