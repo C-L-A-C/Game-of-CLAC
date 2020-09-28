@@ -27,7 +27,9 @@ public class DonneesJeu {
 	}
 	
 	public void saveBuild(Entite newBuild) {
-		builds.put(newBuild.getPos(), newBuild);
+		if (checkCollision(newBuild) == null)
+			builds.put(newBuild.getPos(), newBuild);
+		else System.out.println("Deja presetn ! ");
 	}
 	
 	public Entite checkCollision(Entite e)
