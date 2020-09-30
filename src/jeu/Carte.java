@@ -75,6 +75,16 @@ public class Carte {
 		return cellules;
 	}
 	
+	public Cellule getCellule(GridPosition pos)
+	{
+		return cellules[pos.getX()][pos.getY()];
+	}
+	
+	public Cellule getCellule(int xPixels, int yPixels)
+	{
+		return getCellule(GridPosition.fromPixels(xPixels, yPixels));
+	}
+	
 
 	public long getWidth() {
 		return w;

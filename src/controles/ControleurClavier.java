@@ -40,10 +40,7 @@ public class ControleurClavier extends Controleur{
 		Controle[] controles = Controle.values();
 		config = new int[controles.length / 2];
 		for (int i = 0; i < config.length; i++)
-		{
-			String key = controles[i].toString();
-			config[i] = Config.readKey(ConfigKey.fromString("Touche" + Utils.PascalCase(key)));
-		}
+			config[i] = Config.readKey(ConfigKey.getConfigKeyFromControle(controles[i]));
 	}
 
 	public void keyPressed(int keycode)

@@ -98,7 +98,7 @@ public abstract class Entite{
 	}
 	public GridPosition getPos()
 	{
-		return new GridPosition(getX(), getY());
+		return GridPosition.fromPixels(getX(), getY());
 	}
 	
 	public float getX()
