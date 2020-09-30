@@ -10,11 +10,13 @@ public class Carte {
 	public static final int GRID_W = 15, GRID_H = 15;
 	private long w, h;
 	private Element[][] elements;
+	private Ressource[][] ressources;
 
 	public Carte(long w, long h) {
 		this.w = w;
 		this.h = h;
 		elements = genererZoneCarte(new Rectangle(0, 0, w, h));
+		ressources = genererRessourcesZoneCarte(new Rectangle(0, 0, w, h));
 	}
 
 	public void afficher(PApplet p, Rectangle zone) {
@@ -41,6 +43,18 @@ public class Carte {
 					break;
 				}
 				p.rect(x * GRID_W, y * GRID_H, GRID_W, GRID_H);
+				//tracé des ressources
+				if (ressources[x][y] != null) {
+					switch (ressources[x][y].getType()) {
+					case PETROLE:
+						p.fill(128, 128, 128);
+						break;
+					case CHARBON:
+						p.fill(0, 0, 0);
+						break;
+					}
+					p.ellipse(x * GRID_W  + GRID_W / 2, y * GRID_H + GRID_H / 2, GRID_W / 2, GRID_H / 2);
+				}
 			}
 		}
 	}
@@ -56,6 +70,21 @@ public class Carte {
 		}
 		return elements;
 	}
+	
+	private Ressource[][] genererRessourcesZoneCarte(Rectangle zone) {
+		Ressource[][] ressources = new Ressource[(int) zone.getW()][(int) zone.getH()];
+		for (int x = 0; x < ressources.length; x++) {
+			for (int y = 0; y < ressources[x].length; y++) {
+				if (Math.random() < 0.3) {
+					TypeRessource[] types = TypeRessource.values();
+					int index = (int) (Math.random() * types.length);
+					ressources[x][y] = new Ressource(types[index]);
+				}
+			}
+		}
+		return ressources;
+	}
+	
 
 	public long getWidth() {
 		return w;
