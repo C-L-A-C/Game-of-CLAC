@@ -1,6 +1,7 @@
 package gui;
 
 import controles.ControleurClavier;
+import graphiques.Assets;
 import jeu.DonneesJeu;
 import processing.core.PApplet;
 
@@ -12,6 +13,9 @@ public class Jeu extends Scene {
 	@Override
 	public void setup(PApplet p) {
 		super.setup(p);
+		
+		Assets.init(p);
+		
 		jeu = new DonneesJeu();
 		controleur = new ControleurClavier(jeu.getJoueur());
 	}

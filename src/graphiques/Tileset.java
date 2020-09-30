@@ -5,7 +5,7 @@ import java.util.List;
 
 import processing.core.PImage;
 
-class Tileset {
+public class Tileset {
 	private int w, h, wTile, hTile;
 	private List<PImage> images;
 
@@ -14,7 +14,7 @@ class Tileset {
 		h = nbY;
 		wTile = img.width / w;
 		hTile = img.height / h;
-		
+				
 		images = new ArrayList<>();
 		for (int y = 0; y < nbY; y++) 
 			for (int x = 0; x < nbX; x++)

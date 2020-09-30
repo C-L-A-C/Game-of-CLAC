@@ -11,7 +11,7 @@ import processing.core.PImage;
  * @author adrien
  *
  */
-class AnimationSet implements Apparence{
+public class AnimationSet implements Apparence{
 	private List<Animation> anims;
 	private int current;
 	private List<Integer> queue;
@@ -24,6 +24,7 @@ class AnimationSet implements Apparence{
 
 	public AnimationSet(Tileset tileset, int FPS, int offset) {
 		int w = tileset.getTileX();
+		anims = new ArrayList<>();
 		for (int i = 0; i < tileset.getTileY(); i++) {
 			int index = i + offset;
 			anims.add(new Animation(tileset, index * w, (index + 1) * w - 1, FPS));

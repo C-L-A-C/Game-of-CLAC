@@ -13,6 +13,7 @@ import utils.Logger;
 
 public class Assets {
 
+	private static final String ASSETS_DIR = "assets";
 	private static Map<String, Object> ressources;
 	private static PApplet p;
 	private static boolean enabled;
@@ -26,8 +27,10 @@ public class Assets {
 	
 	public static PImage getImage(String nom)
 	{
-		if (!enabled)
+		if (!enabled) {
+			System.out.println("Warning : Assets were not initializated");
 			return null;
+		}
 		
 		return (PImage) get(nom, "image");
 	}
@@ -40,7 +43,7 @@ public class Assets {
 	private static void load(String nom, String type) throws IOException
 	{	
 		String[] types = {"image"};
-		String[] repertoires = {"Image"};
+		String[] repertoires = {"sprites"};
 		
 		String[][] exts = {
 				{ ".png", ".jpg", ".jpeg"}
@@ -56,9 +59,10 @@ public class Assets {
 		    public void write(int b) {
 		    }
 		}));
+		
 		for(String ext : exts[typeI])
 		{
-			String filename = repertoires[typeI] + "/" + nom + ext;
+			String filename = ASSETS_DIR + "/" + repertoires[typeI] + "/" + nom + ext;
 			PImage img = null;
 			switch (type)
 			{

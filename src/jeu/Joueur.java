@@ -3,7 +3,11 @@ package jeu;
 import collision.Rectangle;
 import controles.Controlable;
 import controles.Controle;
+import graphiques.AnimationSet;
+import graphiques.Assets;
 import graphiques.AffichageRectangle;
+import graphiques.Animation;
+import graphiques.Tileset;
 import utils.Utils;
 
 
@@ -12,7 +16,7 @@ public class Joueur extends EntiteMobile implements Controlable {
 	public final static int W = Carte.GRID_W, H = Carte.GRID_H;	
 
 	public Joueur(float x, float y) {
-		super(x, y, new AffichageRectangle(Utils.color(255, 255, 0)));
+		super(x, y, new Animation(new Tileset(Assets.getImage("spritesheet1"), 12, 8), 0, 2, 3));
 		forme = new Rectangle(pos, W, H);
 	}
 	

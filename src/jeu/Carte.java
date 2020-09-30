@@ -1,22 +1,23 @@
 package jeu;
 
 import collision.Rectangle;
-import element.Element;
+import element.Cellule;
+import element.Ressource;
+import element.TypeRessource;
 import element.TypeElement;
 import processing.core.PApplet;
+import utils.Utils;
 
 public class Carte {
 
-	public static final int GRID_W = 15, GRID_H = 15;
+	public static final int GRID_W = 64, GRID_H = 64;
 	private long w, h;
-	private Element[][] elements;
-	private Ressource[][] ressources;
+	private Cellule[][] cellules;
 
 	public Carte(long w, long h) {
 		this.w = w;
 		this.h = h;
-		elements = genererZoneCarte(new Rectangle(0, 0, w, h));
-		ressources = genererRessourcesZoneCarte(new Rectangle(0, 0, w, h));
+		cellules = genererZoneCarte(new Rectangle(0, 0, w, h));
 	}
 
 	public void afficher(PApplet p, Rectangle zone) {
@@ -28,24 +29,21 @@ public class Carte {
 		
 		for (int x = gridX; x < gridX + gridW + xComp && x < w; x++) {
 			for (int y = gridY; y < gridY + gridH + yComp && y < h; y++) {
-				switch (elements[x][y].getType()) {
+				switch (cellules[x][y].getTypeElement()) {
 				case TERRE:
 					p.fill(64, 9, 3);
 					break;
-				case PIERRE:
+				case MONTAGNE:
 					p.fill(90, 90, 90);
 					break;
 				case HERBE:
 					p.fill(0, 130, 10);
 					break;
-				case CHARBON:
-					p.fill(10, 10, 10);
-					break;
 				}
 				p.rect(x * GRID_W, y * GRID_H, GRID_W, GRID_H);
 				//tracé des ressources
-				if (ressources[x][y] != null) {
-					switch (ressources[x][y].getType()) {
+				if (cellules[x][y].getRessource() != null) {
+					switch (cellules[x][y].getRessource().getType()) {
 					case PETROLE:
 						p.fill(128, 128, 128);
 						break;
@@ -59,30 +57,22 @@ public class Carte {
 		}
 	}
 
-	private Element[][] genererZoneCarte(Rectangle zone) {
-		Element[][] elements = new Element[(int) zone.getW()][(int) zone.getH()];
-		for (int x = 0; x < elements.length; x++) {
-			for (int y = 0; y < elements[x].length; y++) {
-				TypeElement[] types = TypeElement.values();
-				int index = (int) (Math.random() * types.length);
-				elements[x][y] = new Element(types[index]);
-			}
-		}
-		return elements;
-	}
-	
-	private Ressource[][] genererRessourcesZoneCarte(Rectangle zone) {
-		Ressource[][] ressources = new Ressource[(int) zone.getW()][(int) zone.getH()];
-		for (int x = 0; x < ressources.length; x++) {
-			for (int y = 0; y < ressources[x].length; y++) {
+	private Cellule[][] genererZoneCarte(Rectangle zone) {
+		Cellule[][] cellules = new Cellule[(int) zone.getW()][(int) zone.getH()];
+		for (int x = 0; x < cellules.length; x++) {
+			for (int y = 0; y < cellules[x].length; y++) {				
+				TypeElement[] typesElements = TypeElement.values();
+
+				Ressource ressource = null;
 				if (Math.random() < 0.3) {
-					TypeRessource[] types = TypeRessource.values();
-					int index = (int) (Math.random() * types.length);
-					ressources[x][y] = new Ressource(types[index]);
+					TypeRessource[] typesRessources = TypeRessource.values();
+					ressource = new Ressource(Utils.random(typesRessources));
 				}
+				
+				cellules[x][y] = new Cellule(Utils.random(typesElements), ressource);
 			}
 		}
-		return ressources;
+		return cellules;
 	}
 	
 

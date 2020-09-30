@@ -1,5 +1,5 @@
 package element;
 
 public enum TypeElement {
-	TERRE, PIERRE, HERBE, CHARBON;
+	TERRE, MONTAGNE, HERBE;
 }
