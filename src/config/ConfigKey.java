@@ -3,6 +3,9 @@ package config;
 import java.util.HashMap;
 import java.util.Map;
 
+import controles.Controle;
+import utils.Utils;
+
 /**
  * Enumeration representant les clefs de configuration
  * @author adrien
@@ -19,7 +22,8 @@ public enum ConfigKey {
 	TOUCHE_DROITE("ToucheDroite"),
 	TOUCHE_GAUCHE("ToucheGauche"),
 	TOUCHE_POSER_MUR("TouchePoserMur"), 
-	MAP_DIRECTORY("MapsDirectory");
+	MAP_DIRECTORY("MapsDirectory"),
+	TOUCHE_MINER("ToucheMiner");
 	
 	
 	private final static Map<String, String> noms = new HashMap<>();
@@ -34,6 +38,12 @@ public enum ConfigKey {
 	public String getValue()
 	{
 		return key;
+	}
+	
+	//Retourne la clef de configuration de la valeur de la touche voulue
+	public static ConfigKey getConfigKeyFromControle(Controle c)
+	{
+		return fromString("Touche" + Utils.PascalCase(c.toString()));
 	}
 	
 	//Si on veut afficher la clef de config, on affiche sa "traduction"

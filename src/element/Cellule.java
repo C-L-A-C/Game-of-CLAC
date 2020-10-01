@@ -19,4 +19,11 @@ public class Cellule {
 	{
 		return ressource;
 	}
+	
+	public Ressource miner()
+	{
+		Ressource obtenue = ressource;
+		ressource = null;
+		return obtenue;
+	}
 }

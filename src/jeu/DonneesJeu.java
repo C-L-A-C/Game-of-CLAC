@@ -81,4 +81,8 @@ public class DonneesJeu {
 		return joueur;
 	}
 
+	public Carte getCarte() {
+		return carte;
+	}
+
 }

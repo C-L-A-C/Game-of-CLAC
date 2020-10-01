@@ -15,13 +15,13 @@ public class Carte {
 	private long w, h;
 	private Cellule[][] cellules;
 
-	private MapManager carte;
+	private MapManager mapManager;
 	
 	
 	public Carte(long w, long h) {
 		this.w = w;
 		this.h = h;
-		carte = new MapManager(0);
+		mapManager = new MapManager(0);
 		//cellules = genererZoneCarte(new Rectangle(0, 0, w, h));
 		
 	}
@@ -35,7 +35,7 @@ public class Carte {
 		
 		for (int x = gridX; x < gridX + gridW + xComp && x < w; x++) {
 			for (int y = gridY; y < gridY + gridH + yComp && y < h; y++) {
-				switch (carte.get(x, y).getTypeElement()) {
+				switch (mapManager.get(x, y).getTypeElement()) {
 				case TERRE:
 					p.fill(64, 9, 3);
 					break;
@@ -48,8 +48,8 @@ public class Carte {
 				}
 				p.rect(x * GRID_W, y * GRID_H, GRID_W, GRID_H);
 				//tracé des ressources
-				if (carte.get(x, y).getRessource() != null) {
-					switch (carte.get(x, y).getRessource().getType()) {
+				if (mapManager.get(x, y).getRessource() != null) {
+					switch (mapManager.get(x, y).getRessource().getType()) {
 					case PETROLE:
 						p.fill(128, 128, 128);
 						break;
@@ -83,6 +83,16 @@ public class Carte {
 			}
 		}
 		return cellules;
+	}
+	
+	public Cellule getCellule(GridPosition pos)
+	{
+		return mapManager.get(pos.getX(), pos.getY());
+	}
+	
+	public Cellule getCellule(int xPixels, int yPixels)
+	{
+		return getCellule(GridPosition.fromPixels(xPixels, yPixels));
 	}
 	
 

@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
+import controles.Controle;
 import utils.LogLevel;
 import utils.Logger;
 
@@ -195,16 +196,20 @@ public class Config{
 		checks.put(ConfigKey.MAP_DIRECTORY, checkDir);
 		config.put(ConfigKey.LOG_LEVEL, "2");
 		checks.put(ConfigKey.LOG_LEVEL, checkInt);	
-		config.put(ConfigKey.TOUCHE_HAUT, "UP");
-		checks.put(ConfigKey.TOUCHE_HAUT, checkKey);	
-		config.put(ConfigKey.TOUCHE_BAS, "DOWN");
-		checks.put(ConfigKey.TOUCHE_BAS, checkKey);	
-		config.put(ConfigKey.TOUCHE_DROITE, "RIGHT");
-		checks.put(ConfigKey.TOUCHE_DROITE, checkKey);	
-		config.put(ConfigKey.TOUCHE_GAUCHE, "LEFT");
-		checks.put(ConfigKey.TOUCHE_GAUCHE, checkKey);
-		config.put(ConfigKey.TOUCHE_POSER_MUR, "A");
-		checks.put(ConfigKey.TOUCHE_POSER_MUR, checkKey);
+		
+		
+		// Default configuration for keys
+		// Regarder la class Controle pour savoir l'ordre
+		String[] keyDefaults = {"UP", "DOWN", "RIGHT", "LEFT", "A", "Q"};
+		Controle[] controles = Controle.values();
+		
+		// On prend que les version "en mode appuye" de base des controles 
+		for (int i = 0; i < controles.length / 2; i++)
+		{
+			ConfigKey key = ConfigKey.getConfigKeyFromControle(controles[i]);
+			config.put(key, keyDefaults[i]);
+			checks.put(key, checkKey);
+		}
 		
 	}
 

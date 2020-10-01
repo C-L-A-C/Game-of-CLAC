@@ -3,6 +3,29 @@ package jeu;
 public class GridPosition {
 	private int x, y;
 
+	/**
+	 * Constructeur à partir de coordonnées sur la grille
+	 * @param x
+	 * @param y
+	 */
+	public GridPosition(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public static GridPosition fromPixels(float xPixels, float yPixels) {
+		return new GridPosition((int) xPixels / Carte.GRID_W, (int) yPixels / Carte.GRID_H);
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -26,25 +49,5 @@ public class GridPosition {
 		if (y != other.y)
 			return false;
 		return true;
-	}
-
-	/**
-	 * Constructeur à partir de coordonnées sur la grille
-	 * @param x
-	 * @param y
-	 */
-	public GridPosition(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	/**
-	 * Constructeur à partir de coordonnées de pixels
-	 * @param x
-	 * @param y
-	 */
-	public GridPosition(float x, float y) {
-		this.x = (int) x / Carte.GRID_W;
-		this.y = (int) y / Carte.GRID_H;
 	}
 }
