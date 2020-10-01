@@ -7,17 +7,23 @@ import element.TypeRessource;
 import element.TypeElement;
 import processing.core.PApplet;
 import utils.Utils;
+import mapmanager.MapManager;
 
 public class Carte {
 
-	public static final int GRID_W = 64, GRID_H = 64;
+	public static final int GRID_W = 20, GRID_H = 20;
 	private long w, h;
 	private Cellule[][] cellules;
 
+	private MapManager carte;
+	
+	
 	public Carte(long w, long h) {
 		this.w = w;
 		this.h = h;
-		cellules = genererZoneCarte(new Rectangle(0, 0, w, h));
+		carte = new MapManager(0);
+		//cellules = genererZoneCarte(new Rectangle(0, 0, w, h));
+		
 	}
 
 	public void afficher(PApplet p, Rectangle zone) {
@@ -29,7 +35,7 @@ public class Carte {
 		
 		for (int x = gridX; x < gridX + gridW + xComp && x < w; x++) {
 			for (int y = gridY; y < gridY + gridH + yComp && y < h; y++) {
-				switch (cellules[x][y].getTypeElement()) {
+				switch (carte.get(x, y).getTypeElement()) {
 				case TERRE:
 					p.fill(64, 9, 3);
 					break;
@@ -42,8 +48,8 @@ public class Carte {
 				}
 				p.rect(x * GRID_W, y * GRID_H, GRID_W, GRID_H);
 				//tracé des ressources
-				if (cellules[x][y].getRessource() != null) {
-					switch (cellules[x][y].getRessource().getType()) {
+				if (carte.get(x, y).getRessource() != null) {
+					switch (carte.get(x, y).getRessource().getType()) {
 					case PETROLE:
 						p.fill(128, 128, 128);
 						break;
@@ -53,6 +59,10 @@ public class Carte {
 					}
 					p.ellipse(x * GRID_W  + GRID_W / 2, y * GRID_H + GRID_H / 2, GRID_W / 2, GRID_H / 2);
 				}
+				// DEBUG Regions
+				int k = MapManager.calcId(x, y) * (MapManager.calcId(x, y) + 125)  % 255;
+				p.fill((float) k, 125, 255-k, (float)125);
+				p.rect(x * GRID_W, y * GRID_H, GRID_W, GRID_H);
 			}
 		}
 	}
