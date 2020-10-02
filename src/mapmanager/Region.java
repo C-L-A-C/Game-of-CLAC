@@ -11,7 +11,7 @@ import utils.Utils;
  */
 public class Region {
 	
-	final static private int W = 5;		// Region Width
+	final static private int W = 7;		// Region Width
 	final static private int H = 5;		// Region Height
 
 	private int rx;						// Region x index
@@ -69,7 +69,7 @@ public class Region {
 	}
 	
 	public Cellule get(int x, int y) {
-		return cellules[x - rx * W][y - ry * W];
+		return cellules[x - rx * W][y - ry * H];
 	}
 	
 }
