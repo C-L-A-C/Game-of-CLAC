@@ -1,5 +1,7 @@
 package mapmanager;
 
+import java.util.Random;
+
 import element.Cellule;
 import element.Ressource;
 import element.TypeElement;
@@ -38,18 +40,23 @@ public class Region {
 		return (x+y)*(x+y+1)/2 + y;
 	}
 	
-	public void initFromSeed(int seed) {
-		
-		// TODO use seed  witd seed2 = f(seed, id);
+	public void initFromSeed(long seed) {
 		
 		// create perlin grid
 		final int PERLIN_PERIOD = 8;
 		double[][][] perlinGrid = new double[W/PERLIN_PERIOD + 1][H/PERLIN_PERIOD + 1][2];
-		for (int x = 0; x < perlinGrid.length; x++) {
-			for (int y = 0; y < perlinGrid[x].length; y++) {				
-				perlinGrid[x][y][0] = Math.random();
-				perlinGrid[x][y][1] = Math.random();
+		for (int ix = 0; ix < perlinGrid.length; ix++) {
+			for (int iy = 0; iy < perlinGrid[ix].length; iy++) {	
 				
+				// ReaL positions
+				int rlx = (ix) * PERLIN_PERIOD + rx * W;
+				int rly = (iy) * PERLIN_PERIOD + ry * H;
+				//set generator with seed  witd seed2 = f(seed, position) = seed XOR pairing(x, y);
+				Random rand = new Random(seed ^ ((rlx+rly)*(rlx+rly+1)/2 + rly));
+				rand.nextDouble();	// skip for chaos
+				double angle = rand.nextDouble() * 2 * Math.PI;
+				perlinGrid[ix][iy][0] = Math.cos(angle);
+				perlinGrid[ix][iy][1] = Math.sin(angle);
 			}
 		}
 		
@@ -58,7 +65,7 @@ public class Region {
 		TypeRessource[] typesRessources = TypeRessource.values();
 		for (int x = 0; x < cellules.length; x++) {
 			for (int y = 0; y < cellules[x].length; y++) {				
-				int test = (perlin(perlinGrid, (double)x/PERLIN_PERIOD, (double)y/PERLIN_PERIOD) < 0) ? 0 : 1;
+				int test = (perlin(perlinGrid, (double)y/PERLIN_PERIOD, (double)x/PERLIN_PERIOD) < 0.5) ? 0 : 1;
 				cellules[x][y] = new Cellule(typesElements[test], new Ressource(typesRessources[test]));
 			}
 		}
@@ -83,8 +90,13 @@ public class Region {
 	}
 	 // Function to linearly interpolate between a0 and a1
 	 // Weight w should be in the range [0.0, 1.0]
-	 public double lerp(double a0, double a1, double w) {
+	 private double lerp(double a0, double a1, double w) {
 	     return (1.0 - w)*a0 + w*a1;
+	 }
+	 
+	 private double smoothlerp(double a0, double a1, double w) {
+		 // https://mrl.nyu.edu/~perlin/paper445.pdf
+		 return lerp(a0, a1, w * w * w * (10 + w * (-15 + w * 6)));
 	 }
 	 
 	 // Computes the dot product of the distance and gradient vectors.
@@ -116,13 +128,13 @@ public class Region {
 	     double n0, n1, ix0, ix1, value;
 	     n0 = dotGridGradient(gradient, x0, y0, x, y);
 	     n1 = dotGridGradient(gradient, x1, y0, x, y);
-	     ix0 = lerp(n0, n1, sx);
+	     ix0 = smoothlerp(n0, n1, sx);
 	     n0 = dotGridGradient(gradient, x0, y1, x, y);
 	     n1 = dotGridGradient(gradient, x1, y1, x, y);
-	     ix1 = lerp(n0, n1, sx);
-	     value = lerp(ix0, ix1, sy);
+	     ix1 = smoothlerp(n0, n1, sx);
+	     value = smoothlerp(ix0, ix1, sy);
 	 
-	     return value;
+	     return (value + 1)/2;
 	 }
 	
 }
